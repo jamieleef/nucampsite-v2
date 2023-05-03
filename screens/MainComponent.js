@@ -46,39 +46,6 @@ const HomeNavigator = () => {
     );
 };
 
-const DirectoryNavigator = () => {
-    const Stack = createStackNavigator();
-    return (
-        <Stack.Navigator
-            initialRouteName='Directory'
-            screenOptions={screenOptions}
-        >
-            <Stack.Screen 
-                name='Directory'
-                component={DirectoryScreen}
-                options={({ navigation }) => ({ 
-                    title: 'Campsite Directory',
-                    headerLeft: () => (
-                        <Icon
-                            name='list'
-                            type='font-awesome'
-                            iconStyle={styles.stackIcon}
-                            onPress={() => navigation.toggleDrawer()}
-                        />
-                    )
-                })}
-            />
-            <Stack.Screen 
-                name='CampsiteInfo'
-                component={CampsiteInfoScreen}
-                options={({ route }) => ({
-                    title: route.params.campsite.name
-                })}
-            />
-        </Stack.Navigator>
-    );
-};
-
 const AboutNavigator = () => {
     const Stack = createStackNavigator();
     return (
@@ -118,6 +85,39 @@ const ContactNavigator = () => {
                             onPress={() => navigation.toggleDrawer()}
                         />
                     )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const DirectoryNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            initialRouteName='Directory'
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen 
+                name='Directory'
+                component={DirectoryScreen}
+                options={({ navigation }) => ({ 
+                    title: 'Campsite Directory',
+                    headerLeft: () => (
+                        <Icon
+                            name='list'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+            <Stack.Screen 
+                name='CampsiteInfo'
+                component={CampsiteInfoScreen}
+                options={({ route }) => ({
+                    title: route.params.campsite.name
                 })}
             />
         </Stack.Navigator>
