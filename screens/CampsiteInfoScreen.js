@@ -1,4 +1,12 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { 
+    FlatList, 
+    StyleSheet, 
+    Text, 
+    Button, 
+    Modal, 
+    View 
+} from 'react-native';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import RenderCampsite from '../features/campsites/RenderCampsite';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
@@ -8,6 +16,8 @@ const CampsiteInfoScreen = ({ route }) => {
     const comments = useSelector((state) => state.comments);
     const favorites = useSelector((state) => state.favorites);
     const dispatch = useDispatch();
+
+    const [showModal, setShowModal] = useState(false);
 
     const renderCommentItem = ({ item }) => {
         return (
