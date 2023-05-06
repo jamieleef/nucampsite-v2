@@ -100,8 +100,8 @@ const CampsiteInfoScreen = ({ route }) => {
                         placeholder='Author'
                         leftIcon={{ type: 'font-awesome', name: 'user-o'}}
                         leftIconContainerStyle={{paddingRight: 10}}
-                        onChangeText={(text)=> setText(text)}
-                        value={text}
+                        onChangeText={(author)=> setAuthor(author)}
+                        value={author}
                     />
                     <Input 
                         placeholder='Comment'
