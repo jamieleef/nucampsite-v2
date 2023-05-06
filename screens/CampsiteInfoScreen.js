@@ -102,6 +102,7 @@ const CampsiteInfoScreen = ({ route }) => {
                         leftIconContainerStyle={{paddingRight: 10}}
                         onChangeText={(text)=> setText(text)}
                         value=''
+                        editable={true}
                     />
                     <Input 
                         placeholder='Comment'
@@ -109,6 +110,7 @@ const CampsiteInfoScreen = ({ route }) => {
                         leftIconContainerStyle={{paddingRight: 10}}
                         onChangeText={(text)=> setText(text)}
                         value=''
+                        editable={true}
                     />
                     <View style={{margin: 10}}>
                         <Button 
