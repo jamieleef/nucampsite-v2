@@ -24,6 +24,7 @@ const CampsiteInfoScreen = ({ route }) => {
     const [author, setAuthor] = useState('');
     const [text, setText] = useState('');
 
+
     const handleSubmit = () => {
         const newComment = {
             author,
