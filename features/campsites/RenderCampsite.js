@@ -10,8 +10,9 @@ const RenderCampsite = (props) => {
     const view = useRef();
 
     const isLeftSwipe = ({ dx }) => dx < -200;
+    const isRightSwipe = ({ dx }) => dx > 200;
 
-    const pandResponder = PanResponder.create({
+    const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderGrant: () => {
             view.current
@@ -41,6 +42,8 @@ const RenderCampsite = (props) => {
                     ],
                     { cancelable: false }
                 );
+            } else if (isRightSwipe(gestureState)) {
+                props.onShowModal();
             }
         }
     });
@@ -52,7 +55,7 @@ const RenderCampsite = (props) => {
                     duration={2000}
                     delay={1000}
                     ref={view}
-                    {...pandResponder.panHandlers}
+                    {...panResponder.panHandlers}
             >
                 <Card containerStyle={styles.cardContainer}>
                     <Card.Image source={{ uri: baseUrl + campsite.image }}>
