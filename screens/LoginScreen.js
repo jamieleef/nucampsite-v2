@@ -3,9 +3,10 @@ import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { CheckBox, Input, Button, Icon } from "react-native-elements";
 import * as SecureStore from "expo-secure-store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as ImagePicker from "expo-image-picker";
-import { baseUrl } from "../shared/baseUrl";
-import logo from "../assets/images/logo.png";
+import * as ImagePicker from 'expo-image-picker';
+import { baseUrl } from '../shared/baseUrl';
+import logo from '../assets/images/logo.png';
+import { ImageManipulator } from "expo-image-manipulator";
 
 const LoginTab = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -154,16 +155,27 @@ const RegisterTab = () => {
         }
     };
 
+    const processImage = async (imgUri) => {
+        const processedImage =
+            await ImageManipulator.manipulateAsync(
+                imgUri,
+                [{ resize: { width: 400 } }],
+                { format: 'png'}
+            );
+        console.log('Processed Image URI:', processedImage.uri);
+        setImageUrl(processedImage.uri);
+    };
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image 
-                        source={{ uri: imageUrl }}
-                        loadingIndicatorSource={logo}
-                        style={styles.image}
-                    />
-                    <Button title="Camera" onPress={getImageFromCamera} />
+                <Image
+                    source={{ uri: imageUrl }}
+                    loadingIndicatorSource={logo}
+                    style={styles.image}
+                />
+                <Button title='Camera' onPress={getImageFromCamera} />
                 </View>
                 <Input 
                     placeholder="Username"
